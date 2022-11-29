@@ -71,4 +71,4 @@ Enum seatClass {
 }
 ```
 below is an image of UML for the Flight class and it's associations
-![Alt text](https://drive.google.com/file/d/118SneLB9w8AaRmX7OcceinXtN9npNPYV/view?usp=sharing "Flight UML")
+![Alt text](./UML/FlightUML.png?raw=true "Flight UML")
