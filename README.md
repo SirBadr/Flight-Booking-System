@@ -70,8 +70,6 @@ Enum seatClass {
     Business
 }
 ```
-below is an image of UML for the Flight class and it's associations
-![Alt text](./UML/FlightUML.png?raw=true "Flight UML")
 
 Admin class
 ```
@@ -79,6 +77,7 @@ class Admin {
     addFlight(Flight flight)
     updateFlight(??)
     removeFlight(??)
+    readFlight(??)
 }
 ```
 
