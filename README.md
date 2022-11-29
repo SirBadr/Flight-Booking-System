@@ -127,3 +127,11 @@ now the customer has found a flight he'd like to researve a seat onto.
 ```
     bookFlight(Flight flight, Customer customer)
 ```
+
+# Boilerplate
+I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to generate a boilerplate code that includes
+1. Spring Data JPA: to work with data 
+2. Spring Web: helps with creatuing RESTful APIs
+3. PostgreSQL Driver: allows Java to connect to a PostgreSQL database.
+
+# to start application
