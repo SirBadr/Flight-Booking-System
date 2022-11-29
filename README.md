@@ -25,7 +25,7 @@ And will allow customers to search through all flights, by fare, from and to des
 Customer's payment for a flight is considered out-of-scope of this project, so payments will not be handled.
 
 ## Assumptions.
-1. As long as we have `customers` able to book a flight, upgrade or cancel a flight, we need a method to sign up/log in.
+1. As long as we have `customers` able to book a flight, upgrade or cancel a flight, we need a method to log in.
 
 # System Actors
 1. Admin: responsible for adding/updating/removing any flight.
@@ -72,3 +72,59 @@ Enum seatClass {
 ```
 below is an image of UML for the Flight class and it's associations
 ![Alt text](./UML/FlightUML.png?raw=true "Flight UML")
+
+Admin class
+```
+class Admin {
+    addFlight(Flight flight)
+    updateFlight(??)
+    removeFlight(??)
+}
+```
+
+then, create Customer class
+
+```
+class Customer {
+    String name
+    String email
+    Date birthDate
+    Enum gender
+    String location
+}
+
+Enum gender {
+    MALE
+    FEMALE
+}
+```
+
+Customers need to search for a flight & book a seat.
+```
+class Booking {
+    List<Customer> customers
+    List<Flight> allFlights
+}
+```
+
+and to search for flights
+
+```
+    getAllFlights(){
+        return allFlights
+    };
+```
+
+to search for a specific flight details on a certain day, customer can use `from`, `to`, `date`, or just search for a flight with `from` and `to`, 
+another method is to search for `from` and `to` and decide a range of `fare` he'd like to pay ??
+```
+    getFlight(String from, String to, Date date);
+    getFlight(String from, String to);
+    getFlight(String from, String to, Integer minFare, Integer maxFare); ??
+```
+
+now the customer has found a flight he'd like to researve a seat onto.
+
+```
+    bookFlight(Flight flight, Customer customer)
+```
