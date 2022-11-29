@@ -11,9 +11,9 @@ import java.util.List;
 @RequestMapping(path = "api/v1/Customers")
 public class CustomerController {
     private final CustomerService customerService;
-
+    @Autowired
     public CustomerController(CustomerService customerService) {
-        this.customerService = new CustomerService();
+        this.customerService = customerService;
     }
 
     @GetMapping

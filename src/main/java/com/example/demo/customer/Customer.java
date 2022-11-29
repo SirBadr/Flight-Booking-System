@@ -1,8 +1,22 @@
 package com.example.demo.customer;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import jdk.jfr.Enabled;
 
+import java.time.LocalDate;
+@Entity
+@Table //to create a table in database
 public class Customer {
+    @Id
+    @SequenceGenerator(
+            name = "customer_sequence",
+            sequenceName = "customer_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "customer_sequence"
+    )
     private Long id;
     private String name;
     private String email;
