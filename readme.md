@@ -134,4 +134,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 2. Spring Web: helps with creatuing RESTful APIs
 3. PostgreSQL Driver: allows Java to connect to a PostgreSQL database.
 
-# to start application
+# steps to connect database
+1. install postgres app
+2. start postgres server
+3. create `flightbooking` database
+   1. CREATE DATABASE flightbooking;
+   2. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO mahmoudsamir;
+   3. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
