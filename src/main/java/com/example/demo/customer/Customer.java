@@ -19,6 +19,7 @@ public class Customer {
     )
     private Long id;
     private String name;
+    @Column(unique = true)
     private String email;
     private LocalDate birthDate;
     private Gender gender;
@@ -26,13 +27,13 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(Long id, String name, String email, LocalDate birthDate, Gender gender) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.birthDate = birthDate;
-        this.gender = gender;
-    }
+//    public Customer(Long id, String name, String email, LocalDate birthDate, Gender gender) {
+//        this.id = id;
+//        this.name = name;
+//        this.email = email;
+//        this.birthDate = birthDate;
+//        this.gender = gender;
+//    }
 
     public Customer(String name, String email, LocalDate birthDate, Gender gender) {
         this.name = name;
@@ -45,9 +46,9 @@ public class Customer {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;

@@ -1,9 +1,9 @@
 package com.example.demo.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,9 +15,23 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+    @PostMapping("/signUp")
+    public void customerSignUp(
+        @RequestBody Customer newCustomer
+    ) {
+        customerService.customerSignUp(newCustomer);
+    }
 
-    @GetMapping
-    public List<Customer> getCustomers() {
-        return customerService.getCustomers();
+    @RequestMapping(value = "/signIn", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Customer> customerSignIn(@RequestBody Customer cus) {
+//        System.out.println(email);
+        var customer = customerService.customerSignIn(cus.getEmail());
+        System.out.println(customer);
+        if(customer == null) {
+            return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+        }
     }
 }

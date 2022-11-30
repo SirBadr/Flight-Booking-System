@@ -18,6 +18,7 @@ public class CustomerService {
 
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
+    }
 //                new Customer(
 //                        1L,
 //                        "Mahmoud",
@@ -25,6 +26,21 @@ public class CustomerService {
 //                        LocalDate.of(1999,1,9),
 //                        Gender.MALE
 //                );
+    public void customerSignUp(
+        Customer newCustomer
+    ) {
+        //System.out.println(newCustomer);
+        customerRepository.save(
+                newCustomer
+        );
+    }
+
+    public Customer customerSignIn(String email) {
+        System.out.println(email);
+        var result = customerRepository.findByEmail(email);
+        System.out.println("RESULT");
+        System.out.println(result);
+        return result;
     }
 
 }
