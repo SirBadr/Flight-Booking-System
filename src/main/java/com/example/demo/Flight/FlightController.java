@@ -35,16 +35,16 @@ public class FlightController {
         return flightService.readFlightByAirLine(airLine);
     }
 
-    @GetMapping("/readFlightByOrigin/{from}")
+    @GetMapping("/readFlightByOrigin/{origin}")
     @ResponseBody
-    public List<Flight> getFlightsByOrigin(@PathVariable String from) {
-        return flightService.readFlightByOrigin(from);
+    public List<Flight> getFlightsByOrigin(@PathVariable String origin) {
+        return flightService.readFlightByOrigin(origin);
     }
 
-    @GetMapping("/readFlightByOrigin/{to}")
+    @GetMapping("/readFlightByOrigin/{dest}")
     @ResponseBody
-    public List<Flight> getFlightsByDestination(@PathVariable String to) {
-        return flightService.readFlightByDestination(to);
+    public List<Flight> getFlightsByDestination(@PathVariable String dest) {
+        return flightService.readFlightByDestination(dest);
     }
 
     @GetMapping("/readFlightByDepartureDate/{departureDate}")

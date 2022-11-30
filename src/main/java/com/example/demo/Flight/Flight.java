@@ -21,8 +21,8 @@ public class Flight {
     private String flightNumber;
     private String airLine; //convert to Airline class in refactoring!
     private Integer fare; // ??
-    private String from;
-    private String to;
+    private String origin;
+    private String dest;
     private LocalDate departureDate;
     private LocalDate arrivalDate;
     private Timestamp departureTime;
@@ -31,25 +31,25 @@ public class Flight {
     public Flight() {
     }
 
-    public Flight(Long id, String flightNumber, String airLine, Integer fare, String from, String to, LocalDate departureDate, LocalDate arrivalDate, Timestamp departureTime, Timestamp arrivalTime) {
+    public Flight(Long id, String flightNumber, String airLine, Integer fare, String origin, String dest, LocalDate departureDate, LocalDate arrivalDate, Timestamp departureTime, Timestamp arrivalTime) {
         Id = id;
         this.flightNumber = flightNumber;
         this.airLine = airLine;
         this.fare = fare;
-        this.from = from;
-        this.to = to;
+        this.origin = origin;
+        this.dest = dest;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
     }
 
-    public Flight(String flightNumber, String airLine, Integer fare, String from, String to, LocalDate departureDate, LocalDate arrivalDate, Timestamp departureTime, Timestamp arrivalTime) {
+    public Flight(String flightNumber, String airLine, Integer fare, String origin, String dest, LocalDate departureDate, LocalDate arrivalDate, Timestamp departureTime, Timestamp arrivalTime) {
         this.flightNumber = flightNumber;
         this.airLine = airLine;
         this.fare = fare;
-        this.from = from;
-        this.to = to;
+        this.origin = origin;
+        this.dest = dest;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.departureTime = departureTime;
@@ -80,20 +80,20 @@ public class Flight {
         this.fare = fare;
     }
 
-    public String getFrom() {
-        return from;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
-    public String getTo() {
-        return to;
+    public String getDest() {
+        return dest;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setDest(String dest) {
+        this.dest = dest;
     }
 
     public LocalDate getDepartureDate() {
@@ -135,8 +135,8 @@ public class Flight {
                 ", flightNumber='" + flightNumber + '\'' +
                 ", airLine='" + airLine + '\'' +
                 ", fare=" + fare +
-                ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
+                ", origin='" + origin + '\'' +
+                ", dest='" + dest + '\'' +
                 ", departureDate=" + departureDate +
                 ", arrivalDate=" + arrivalDate +
                 ", departureTime=" + departureTime +

@@ -13,8 +13,8 @@ public interface FlightRepository
         extends JpaRepository<Flight, Long> {
 
     List<Flight> findByAirLine(String airLine);
-    List<Flight> findByFrom(String from);
-    List<Flight> findByTo(String to);
+    List<Flight> findByOrigin(String origin);
+    List<Flight> findByDest(String dest);
     List<Flight> findByDepartureDate(Timestamp departureDate);
     List<Flight> findByArrivalDate(Timestamp arrivalDate);
 

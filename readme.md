@@ -155,6 +155,7 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 3. ?? (under construction)
 
 ## Flight APIs
+### Reading
 1. getAllFights
    - Description: returns all flights available in DB
    - Permission: public (customer or admin)
