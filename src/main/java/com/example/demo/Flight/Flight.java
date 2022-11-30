@@ -19,8 +19,8 @@ public class Flight {
     )
     private Long Id;
     private String flightNumber;
-    private String airLine; //convert to Airline class in refactoring!
-    private Integer fare; // ??
+    private String airLine;
+    private Integer fare;
     private String origin;
     private String dest;
     private LocalDate departureDate;

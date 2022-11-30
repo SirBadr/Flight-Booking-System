@@ -47,11 +47,47 @@ public class AdminController {
         return new ResponseEntity<Flight>(res, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/updateFlight/{id}", method = RequestMethod.PUT)
+    // Flight Update APIs
+    @RequestMapping(value = "/updateFlightNumber/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Flight> adminUpdateFlight (@RequestBody Flight flight, @PathVariable Long id) {
-        flightService.adminUpdateFlight(flight, id);
-        return new ResponseEntity<Flight>(flight, HttpStatus.OK);
+    public ResponseEntity<Flight> adminUpdateFlightNumber (@RequestBody Flight flight, @PathVariable Long id) {
+        flightService.adminUpdateFlightNumber(flight.getFlightNumber(), id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateFlightFare/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<Flight> adminUpdateFlightFare (@RequestBody Flight flight, @PathVariable Long id) {
+        flightService.adminUpdateFlightFare(flight.getFare(), id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateFlightOrigin/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<Flight> adminUpdateFlightOrigin (@RequestBody Flight flight, @PathVariable Long id) {
+        flightService.adminUpdateFlightOrigin(flight.getOrigin(), id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateFlightDest/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<Flight> adminUpdateFlightDest (@RequestBody Flight flight, @PathVariable Long id) {
+        flightService.adminUpdateFlightDest(flight.getDest(), id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateFlightDepartureDate/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<Flight> adminUpdateFlightDepartureDate (@RequestBody Flight flight, @PathVariable Long id) {
+        flightService.adminUpdateFlightDepartureDate(flight.getDepartureDate(), id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/updateFlightArrivalDate/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<Flight> adminUpdateFlightArrivalDate (@RequestBody Flight flight, @PathVariable Long id) {
+        flightService.adminUpdateFlightArrivalDate(flight.getArrivalDate(), id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     //adminRemoveFlight

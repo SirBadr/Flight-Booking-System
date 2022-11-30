@@ -1,6 +1,7 @@
 package com.example.demo.Flight;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +21,23 @@ public interface FlightRepository
 
     @Query("SELECT f FROM Flight f WHERE f.fare > ?1 and f.fare < ?2")
     List<Flight> findByPriceRange(Integer minFare, Integer maxFare);
+    @Modifying
+    @Query("update Flight f set f.flightNumber = ?1 where f.id = ?2")
+    void updateFlightNumber(String flightNumber, Long id);
+    @Modifying
+    @Query("update Flight f set f.fare = ?1 where f.id = ?2")
+    void updateFlightFare(Integer fare, Long id);
+    @Modifying
+    @Query("update Flight f set f.origin = ?1 where f.id = ?2")
+    void updateFlightOrigin(String origin, Long id);
+    @Modifying
+    @Query("update Flight f set f.dest = ?1 where f.id = ?2")
+    void updateFlightDest(String dest, Long id);
+    @Modifying
+    @Query("update Flight f set f.departureDate = ?1 where f.id = ?2")
+    void updateFlightDepartureDate(LocalDate departureDate, Long id);
+    @Modifying
+    @Query("update Flight f set f.arrivalDate = ?1 where f.id = ?2")
+    void updateFlightArrivalDate(LocalDate arrivalDate, Long id);
 
-    @Query("update Flight f set f = ?1 where f.id = ?2")
-    Flight updateFlight(Flight flight, Long id);
 }
