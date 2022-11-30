@@ -142,3 +142,95 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    1. CREATE DATABASE flightbooking;
    2. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO mahmoudsamir;
    3. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
+
+# APIs
+## Customer APIs
+1. Sign Up
+2. Sign In
+3. ?? (under construction)
+
+## Admin APIs
+1. Sign Up
+2. Sign In
+3. ?? (under construction)
+
+## Flight APIs
+1. getAllFights
+   - Description: returns all flights available in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readAllFlights"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: N/A
+   - Returns: List of flights
+   - Example: ??
+
+2. readFlightById
+   - Description: returns all flights available in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readFlight/{id}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: Integer id
+   - Returns: single flight if exists
+   - Example: ??
+
+3. getFlightsByAirLine
+   - Description: returns all flights that belong to the same air line in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readAllFlightsByAirLine/{airLine}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: String airLine
+   - Returns: List of flights
+   - Example: ??
+
+4. getFlightsByOrigin
+   - Description: returns all flights that have the same departure place in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readFlightsByOrigin/{from}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: String from
+   - Returns: List of flights
+   - Example: ??
+
+5. getFlightsByDestination
+   - Description: returns all flights that have the same destination available in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readFlightByOrigin/{to}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: String to
+   - Returns: List of flights
+   - Example: ??
+
+6. getFlightByDepartureDate
+   - Description: returns all flights that have the same departure timestamp available in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readFlightByDepartureDate/{departureDate}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: Timestamp departureDate
+   - Returns: List of flights
+   - Example: ??
+
+7. getFlightByArrivalDate
+   - Description: returns all flights that have the same arrival timestamp available in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readFlightByArrivalDate/{arrivalDate}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: Timestamp arrivalDate
+   - Returns: List of flights
+   - Example: ??
+
+8. getFlightByPriceRange
+   - Description: returns all flights within a certain price range available in DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Flight/readFlightByPriceRange/{minFare}/{maxFare}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: Integer minFare, Integer maxFare
+   - Returns: List of flights
+   - Example: ??
