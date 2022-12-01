@@ -27,13 +27,15 @@ public class BookingController {
     }
 
     // upgradeSeat
-    @PostMapping("/upgradeSeat/{id}")
+    @RequestMapping(value = "/upgradeSeat/{id}", method = RequestMethod.PUT)
+    @ResponseBody
     public Optional<Booking> upgradeSeat(@PathVariable Long id) {
         return bookingService.upgradeSeat(id);
     }
 
     // downgradeSeat
-    @PostMapping("/downgradeSeat/{id}")
+    @RequestMapping(value = "/downgradeSeat/{id}", method = RequestMethod.PUT)
+    @ResponseBody
     public Optional<Booking> downgradeSeat(@PathVariable Long id) {
         return bookingService.downgradeSeat(id);
     }

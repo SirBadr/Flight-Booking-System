@@ -29,8 +29,9 @@ public class BookingService {
     }
 
     // downgrade seat
+    @Transactional
     public Optional<Booking> downgradeSeat(Long id) {
-        bookingRepository.changeSeatType(SeatType.BUSINESS, id);
+        bookingRepository.changeSeatType(SeatType.ECONOMY, id);
         return bookingRepository.findById(id);
     }
 
