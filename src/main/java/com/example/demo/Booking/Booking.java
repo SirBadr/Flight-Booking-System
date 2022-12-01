@@ -21,7 +21,7 @@ public class Booking { // booking operations.
     private Long flightId; // flight id
     private String seatNumber; // seat number
     private SeatType seatType; // seat type (economy, business)
-
+    private Long customerId; // customer Id
     public Booking() {
     }
 
@@ -36,6 +36,14 @@ public class Booking { // booking operations.
         this.flightId = flightId;
         this.seatNumber = seatNumber;
         this.seatType = seatType;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public Long getFlightId() {
