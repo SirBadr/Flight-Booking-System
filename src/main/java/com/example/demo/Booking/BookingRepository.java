@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, Long> {
-    @Query("SELECT * FROM Booking b WHERE b.customerId=?1")
+    @Query(value = "SELECT * FROM Booking b WHERE b.customerId=?1", nativeQuery = true)
     List<Booking> findByCustomerId(Long customerId);
 
     @Query("UPDATE Booking b set b.seatType=?1 where b.id=?2")

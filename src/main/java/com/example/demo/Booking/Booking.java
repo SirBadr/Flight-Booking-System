@@ -21,7 +21,7 @@ public class Booking { // booking operations.
     private Long flightId; // flight id
     private String seatNumber; // seat number
     private SeatType seatType; // seat type (economy, business)
-    private Long customerId; // customer Id
+    private Long customerId; // customerId
     public Booking() {
     }
 
