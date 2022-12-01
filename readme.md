@@ -318,3 +318,9 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Path parameters: Long id
    - Returns: N/A
    - Example: ??
+
+# Milestones
+1. Complete features ( IN PROGRESS )
+2. Refactor APIs
+3. Add JWT to APIs
+4. ??
