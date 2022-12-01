@@ -235,3 +235,86 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Path parameters: Integer minFare, Integer maxFare
    - Returns: List of flights
    - Example: ??
+
+## Adding a Flight
+1. adminAddFlight
+   - Description: adds a new flight to DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/addFlight"
+   - Request Type: POST
+   - Body parameters: Flight
+   - Path parameters: N/A
+   - Returns: N/A
+   - Example: ??
+
+## Updating a Flight
+1. adminUpdateFlightNumber
+   - Description: Updates a certain flight number
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightNumber/{id}"
+   - Request Type: PUT
+   - Body parameters: String flightNumber
+   - Path parameters: Long id
+   - Returns: N/A
+   - Example: ??
+
+2. adminUpdateFlightFare
+   - Description: Updates a certain flight fare
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightFare/{id}"
+   - Request Type: PUT
+   - Body parameters: Integer fare
+   - Path parameters: Long id
+   - Returns: N/A
+   - Example: ??
+
+3. adminUpdateFlightOrigin
+   - Description: Updates a certain flight origin place
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightOrigin/{id}"
+   - Request Type: PUT
+   - Body parameters: String origin
+   - Path parameters: Long id
+   - Returns: N/A
+   - Example: ??
+
+4. adminUpdateFlightDest
+   - Description: Updates a certain flight destination place
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightDest/{id}"
+   - Request Type: PUT
+   - Body parameters: String dest
+   - Path parameters: Long id
+   - Returns: N/A
+   - Example: ??
+
+5. adminUpdateFlightDepartureDate
+   - Description: Updates a certain flight departure date
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/adminUpdateFlightDepartureDate/{id}"
+   - Request Type: PUT
+   - Body parameters: LocalDate departureDate
+   - Path parameters: Long id
+   - Returns: N/A
+   - Example: ??
+
+6. adminUpdateFlightArrivalDate
+   - Description: Updates a certain flight arrival date
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightArrivalDate/{id}"
+   - Request Type: PUT
+   - Body parameters: LocalDate arrivalDate
+   - Path parameters: Long id
+   - Returns: N/A
+   - Example: ??
+
+## Removing a Flight
+1. adminRemoveFlight
+   - Description: delete a certain flight from DB
+   - Permission: public (customer or admin)
+   - EndPoint: "http://localhost:8080/api/v1/Admins/removeFlight/{id}"
+   - Request Type: DELETE
+   - Body parameters: N/A
+   - Path parameters: Long id
+   - Returns: N/A
+   - Example: ??
