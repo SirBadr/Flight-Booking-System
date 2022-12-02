@@ -25,17 +25,19 @@ public class Booking { // booking operations.
     public Booking() {
     }
 
-    public Booking(Long flightId, String seatNumber, SeatType seatType) {
+    public Booking(Long flightId, String seatNumber, SeatType seatType, Long customerId) {
         this.flightId = flightId;
         this.seatNumber = seatNumber;
         this.seatType = seatType;
+        this.customerId = customerId;
     }
 
-    public Booking(Long id, Long flightId, String seatNumber, SeatType seatType) {
+    public Booking(Long id, Long flightId, String seatNumber, SeatType seatType, Long customerId) {
         this.id = id;
         this.flightId = flightId;
         this.seatNumber = seatNumber;
         this.seatType = seatType;
+        this.customerId = customerId;
     }
 
     public Long getCustomerId() {

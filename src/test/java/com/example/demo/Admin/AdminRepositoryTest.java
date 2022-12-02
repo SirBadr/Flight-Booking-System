@@ -45,7 +45,5 @@ class AdminRepositoryTest {
         System.out.println(_admin);
         // then
         assertThat(_admin).isNull();
-//        assertThat(_admin.getEmail()).isNotEqualTo(email);
-//        assertThat(_admin.getName()).isNotEqualTo(email);
     }
 }
