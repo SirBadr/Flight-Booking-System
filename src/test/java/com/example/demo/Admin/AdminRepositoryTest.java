@@ -1,5 +1,6 @@
 package com.example.demo.Admin;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -11,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class AdminRepositoryTest {
     @Autowired
     private AdminRepository underTest;
+
+    @AfterEach
+    void tearDown() {
+       underTest.deleteAll();
+    }
 
     @Test
     void itShouldFindByEmail() {
@@ -27,5 +33,19 @@ class AdminRepositoryTest {
         // then
         assertThat(_admin.getEmail()).isEqualTo(admin.getEmail());
         assertThat(_admin.getName()).isEqualTo(admin.getName());
+    }
+
+    @Test
+    void itShouldNotFindByEmail() {
+        // given
+        String email = "client@gmail.com";
+
+        // when
+        Admin _admin = underTest.findByEmail(email);
+        System.out.println(_admin);
+        // then
+        assertThat(_admin).isNull();
+//        assertThat(_admin.getEmail()).isNotEqualTo(email);
+//        assertThat(_admin.getName()).isNotEqualTo(email);
     }
 }
