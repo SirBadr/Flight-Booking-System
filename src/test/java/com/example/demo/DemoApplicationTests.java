@@ -3,11 +3,9 @@ package com.example.demo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class DemoApplicationTests {
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-	@Test
-	void contextLoads() {
-	}
+//@SpringBootTest
+class DemoApplicationTests {
 
 }

@@ -526,7 +526,8 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 # Milestones
 1. Complete features ( Complete )
 2. update readme.md ( Complete )
-3. Refactor APIs - Exception Handling - ( In Progress )
-4. Add JUnit testing
-5. Add JWT to APIs
-6. rethink system design
+3. Refactor APIs - Exception Handling - ( Complete )
+4. Add JUnit testing ( In Progress )
+5. Add List of seats to flight 
+6. Add bash file to startup code
+7. Add JWT to APIs
