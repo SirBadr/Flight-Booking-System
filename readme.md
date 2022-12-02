@@ -526,6 +526,7 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 # Milestones
 1. Complete features ( Complete )
 2. update readme.md ( Complete )
-3. Refactor APIs ( In Progress )
-4. Add unit testing
+3. Refactor APIs - Exception Handling - ( In Progress )
+4. Add JUnit testing
 5. Add JWT to APIs
+6. rethink system design

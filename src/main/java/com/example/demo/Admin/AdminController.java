@@ -19,10 +19,16 @@ public class AdminController {
     }
 
     @PostMapping("/signUp")
-    public void adminSignUp(
+    public ResponseEntity<Admin> adminSignUp(
             @RequestBody Admin newAdmin
     ) {
-        adminService.adminSignUp(newAdmin);
+        try{
+            adminService.adminSignUp(newAdmin);
+            return new ResponseEntity<Admin>(newAdmin, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<Admin>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
@@ -42,60 +48,92 @@ public class AdminController {
     @ResponseBody
     public ResponseEntity<Flight> adminAddFlight (@RequestBody Flight flight) {
 //        System.out.println(flight);
-        var res = flightService.adminAddFlight(flight);
-        System.out.println(res);
-        return new ResponseEntity<Flight>(res, HttpStatus.OK);
+        try{
+            var res = flightService.adminAddFlight(flight);
+//            System.out.println(res);
+            return new ResponseEntity<Flight>(res, HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     // Flight Update APIs
     @RequestMapping(value = "/updateFlightNumber/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<Flight> adminUpdateFlightNumber (@RequestBody Flight flight, @PathVariable Long id) {
-        flightService.adminUpdateFlightNumber(flight.getFlightNumber(), id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            flightService.adminUpdateFlightNumber(flight.getFlightNumber(), id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/updateFlightFare/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<Flight> adminUpdateFlightFare (@RequestBody Flight flight, @PathVariable Long id) {
-        flightService.adminUpdateFlightFare(flight.getFare(), id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            flightService.adminUpdateFlightFare(flight.getFare(), id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/updateFlightOrigin/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<Flight> adminUpdateFlightOrigin (@RequestBody Flight flight, @PathVariable Long id) {
-        flightService.adminUpdateFlightOrigin(flight.getOrigin(), id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            flightService.adminUpdateFlightOrigin(flight.getOrigin(), id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/updateFlightDest/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<Flight> adminUpdateFlightDest (@RequestBody Flight flight, @PathVariable Long id) {
-        flightService.adminUpdateFlightDest(flight.getDest(), id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            flightService.adminUpdateFlightDest(flight.getDest(), id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/updateFlightDepartureDate/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<Flight> adminUpdateFlightDepartureDate (@RequestBody Flight flight, @PathVariable Long id) {
-        flightService.adminUpdateFlightDepartureDate(flight.getDepartureDate(), id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            flightService.adminUpdateFlightDepartureDate(flight.getDepartureDate(), id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/updateFlightArrivalDate/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<Flight> adminUpdateFlightArrivalDate (@RequestBody Flight flight, @PathVariable Long id) {
-        flightService.adminUpdateFlightArrivalDate(flight.getArrivalDate(), id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            flightService.adminUpdateFlightArrivalDate(flight.getArrivalDate(), id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     //adminRemoveFlight
     @RequestMapping(value = "/removeFlight/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public ResponseEntity<Flight> adminRemoveFlight (@PathVariable Long id) {
-        flightService.adminRemoveFlight(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            flightService.adminRemoveFlight(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Flight>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 
