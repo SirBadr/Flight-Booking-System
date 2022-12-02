@@ -1,5 +1,6 @@
 package com.example.demo.customer;
 
+import com.example.demo.Booking.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +17,15 @@ public class CustomerController {
         this.customerService = customerService;
     }
     @PostMapping("/signUp")
-    public void customerSignUp(
+    public ResponseEntity<Customer> customerSignUp(
         @RequestBody Customer newCustomer
     ) {
-        customerService.customerSignUp(newCustomer);
+        try{
+            customerService.customerSignUp(newCustomer);
+            return new ResponseEntity<Customer>(newCustomer, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<Customer>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
