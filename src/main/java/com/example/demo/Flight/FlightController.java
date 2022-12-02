@@ -2,8 +2,10 @@ package com.example.demo.Flight;
 
 import com.example.demo.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
@@ -38,25 +40,26 @@ public class FlightController {
     @GetMapping("/readFlightByOrigin/{origin}")
     @ResponseBody
     public List<Flight> getFlightsByOrigin(@PathVariable String origin) {
+        System.out.println(origin);
         return flightService.readFlightByOrigin(origin);
     }
 
-    @GetMapping("/readFlightByOrigin/{dest}")
+    @GetMapping("/readFlightByDestination/{dest}")
     @ResponseBody
     public List<Flight> getFlightsByDestination(@PathVariable String dest) {
         return flightService.readFlightByDestination(dest);
     }
 
-    @GetMapping("/readFlightByDepartureDate/{departureDate}")
+    @GetMapping("/readFlightByDepartureDate")
     @ResponseBody
-    public List<Flight> getFlightByDepartureDate(@PathVariable Timestamp departureDate) {
-        return flightService.readFlightByDepartureDate(departureDate);
+    public List<Flight> getFlightByDepartureDate(@RequestBody Flight flight) {
+        return flightService.readFlightByDepartureDate(flight.getDepartureDate());
     }
 
-    @GetMapping("/readFlightByArrivalDate/{arrivalDate}")
+    @GetMapping("/readFlightByArrivalDate")
     @ResponseBody
-    public List<Flight> getFlightByArrivalDate(@PathVariable Timestamp arrivalDate) {
-        return flightService.readFlightByArrivalDate(arrivalDate);
+    public List<Flight> getFlightByArrivalDate(@RequestBody Flight flight) {
+        return flightService.readFlightByArrivalDate(flight.getArrivalDate());
     }
 
     @GetMapping("/readFlightByPriceRange/{minFare}/{maxFare}")

@@ -35,15 +35,15 @@ public class FlightService {
         return flightRepository.findByOrigin(origin);
     }
 
-    public List<Flight> readFlightByDestination(String to) {
-        return flightRepository.findByDest(to);
+    public List<Flight> readFlightByDestination(String dest) {
+        return flightRepository.findByDest(dest);
     }
 
-    public List<Flight> readFlightByDepartureDate(Timestamp departureDate) {
+    public List<Flight> readFlightByDepartureDate(LocalDate departureDate) {
         return flightRepository.findByDepartureDate(departureDate);
     }
 
-    public List<Flight> readFlightByArrivalDate(Timestamp arrivalDate) {
+    public List<Flight> readFlightByArrivalDate(LocalDate arrivalDate) {
         return flightRepository.findByArrivalDate(arrivalDate);
     }
 
