@@ -139,8 +139,26 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 # APIs
 ## Customer APIs
 1. Sign Up
+   - Example:
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Customers/signUp' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "name":"Mahmoud",
+   "email":"mahmoudbadr9199@gmail.com",
+   "birthDate":199991,
+   "gender":"MALE"
+   }'
+   ```
 2. Sign In
-
+   - Example:
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Customers/signIn' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "email":"mahmoudbadr9199@gmail.com"
+   }'
+   ```
 ## Customer Flight Booking APIs
 1. bookFlight
    - Description: Books a new flight to a customer
@@ -149,7 +167,17 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: Booking booking
    - Path parameters: N/A
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Booking/bookFlight' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "flightId":1,
+   "seatNumber":"AA12",
+   "seatType":"ECONOMY",
+   "customerId":1
+   }'
+   ```
 
 2. upgradeSeat
    - Description: upgrades a reserved seat to Business class
@@ -158,7 +186,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Booking/upgradeSeat/1'
+   ```
 
 3. downgradeSeat
    - Description: downgrades a reserved seat to Economy class
@@ -167,12 +198,32 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Booking/downgradeSeat/1'
+   ```
 
 
 ## Admin APIs
 1. Sign Up
+   - Example:
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Admins/signUp' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "name":"MahmoudAdmin",
+   "email":"admin@admin.com"
+   }'
+   ```
 2. Sign In
+   -Example:
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Admins/signIn' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "email":"admin@admin.com"
+   }'
+   ```
 
 ### Admin APIs for Flights
 ## Adding a Flight
@@ -184,7 +235,22 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: Flight
    - Path parameters: N/A
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Admins/addFlight' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "flightNumber":"12A",
+   "airLine":"QATARAIRWAYS",
+   "fare":124,
+   "origin":"ALX",
+   "dest":"SYD",
+   "departureDate":124234,
+   "arrivalDate":124500,
+   "departureTime":124352,
+   "arrivalTime":124400
+   }'
+   ```
 
 ## Updating a Flight
 1. adminUpdateFlightNumber
@@ -195,7 +261,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: String flightNumber
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightNumber/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "flightNumber":"12B"
+   }'
+   ```
 
 2. adminUpdateFlightFare
    - Description: Updates a certain flight fare
@@ -205,7 +278,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: Integer fare
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example: 
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightFare/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "fare":99
+   }'
+   ```
 
 3. adminUpdateFlightOrigin
    - Description: Updates a certain flight origin place
@@ -215,7 +295,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: String origin
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example: 
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightOrigin/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "origin":"TAI"
+   }'
+   ```
 
 4. adminUpdateFlightDest
    - Description: Updates a certain flight destination place
@@ -225,7 +312,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: String dest
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example: 
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightDest/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "dest":"USA"
+   }'
+   ```
 
 5. adminUpdateFlightDepartureDate
    - Description: Updates a certain flight departure date
@@ -235,7 +329,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: LocalDate departureDate
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightDepartureDate/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "departureDate":12435
+   }'
+   ```
 
 6. adminUpdateFlightArrivalDate
    - Description: Updates a certain flight arrival date
@@ -245,7 +346,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: LocalDate arrivalDate
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightArrivalDate/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "arrivalDate":29321
+   }'
+   ```
 
 ## Removing a Flight
 1. adminRemoveFlight
@@ -256,7 +364,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: Long id
    - Returns: N/A
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request DELETE 'http://localhost:8080/api/v1/Admins/removeFlight/1'
+   ```
 
 ## Flight APIs (Reading)
 1. getAllFights
@@ -267,7 +378,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: N/A
    - Returns: List of flights
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readAllFlights'
+   ```
 
 2. readFlightById
    - Description: returns all flights available in DB
@@ -277,7 +391,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: Integer id
    - Returns: single flight if exists
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readFlight/1'
+   ```
 
 3. getFlightsByAirLine
    - Description: returns all flights that belong to the same air line in DB
@@ -287,7 +404,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: String airLine
    - Returns: List of flights
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readAllFlightsByAirLine/QATARAIRWAYS'
+   ```
 
 4. getFlightsByOrigin
    - Description: returns all flights that have the same departure place in DB
@@ -297,7 +417,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: String from
    - Returns: List of flights
-   - Example: ??
+   - Example: 
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readFlightByOrigin/ALX'
+   ```
 
 5. getFlightsByDestination
    - Description: returns all flights that have the same destination available in DB
@@ -307,7 +430,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: String to
    - Returns: List of flights
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readFlightByDestination/SYD'
+   ```
 
 6. getFlightByDepartureDate
    - Description: returns all flights that have the same departure timestamp available in DB
@@ -317,7 +443,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: LocalDate departureDate
    - Path parameters: N/A
    - Returns: List of flights
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readFlightByDepartureDate' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "departureDate":124234
+   }'
+   ```
 
 7. getFlightByArrivalDate
    - Description: returns all flights that have the same arrival timestamp available in DB
@@ -327,7 +460,14 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: LocalDate arrivalDate
    - Path parameters: N/A
    - Returns: List of flights
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readFlightByArrivalDate' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "arrivalDate":124500
+   }'
+   ```
 
 8. getFlightByPriceRange
    - Description: returns all flights within a certain price range available in DB
@@ -337,7 +477,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: Integer minFare, Integer maxFare
    - Returns: List of flights
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Flight/readFlightByPriceRange/100/150'
+   ```
 
 ## Booking APIs(Reading)
 1. getBooking
@@ -348,7 +491,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: Long id
    - Returns: Booking booking
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Booking/readBooking/1'
+   ```
 
 2. getAllBookings
    - Description: return all reservation records by Id
@@ -358,7 +504,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: N/A
    - Returns: List<Booking>
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Booking/readAllBookings'
+   ```
 
 3. getAllCustomerBookings
    - Description: return all reservation records of certain customer by Id
@@ -368,7 +517,10 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    - Body parameters: N/A
    - Path parameters: Long id
    - Returns: List<Booking>
-   - Example: ??
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Booking/readAllCustomerBookings/1'
+   ```
 
 
 # Milestones
