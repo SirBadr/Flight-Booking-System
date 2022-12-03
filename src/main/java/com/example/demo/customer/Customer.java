@@ -2,6 +2,7 @@ package com.example.demo.customer;
 
 import com.example.demo.Role.Role;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,9 +27,19 @@ public class Customer {
     private String email;
     private LocalDate birthDate;
     private Gender gender;
-
+//    cascade=CascadeType.ALL
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
     public Customer() {
     }
 
@@ -40,11 +51,12 @@ public class Customer {
 //        this.gender = gender;
 //    }
 
-    public Customer(String name, String email, LocalDate birthDate, Gender gender) {
+    public Customer(String name, String email, LocalDate birthDate, Gender gender, Collection<Role> roles) {
         this.name = name;
         this.email = email;
         this.birthDate = birthDate;
         this.gender = gender;
+        this.roles = roles;
     }
 
     public Long getId() {

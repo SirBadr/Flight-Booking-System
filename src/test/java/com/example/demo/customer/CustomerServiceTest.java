@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -37,7 +38,8 @@ class CustomerServiceTest {
                 "customer",
                 "customer@gmail.com",
                 tim,
-                Gender.FEMALE
+                Gender.FEMALE,
+                new ArrayList<>()
         );
         underTest.getCustomers();
 
@@ -51,7 +53,8 @@ class CustomerServiceTest {
                 "customer",
                 "customer@gmail.com",
                 tim,
-                Gender.FEMALE
+                Gender.FEMALE,
+                new ArrayList<>()
         );
         underTest.customerSignUp(customer);
 
@@ -65,7 +68,8 @@ class CustomerServiceTest {
                 "customer",
                 "customer@gmail.com",
                 tim,
-                Gender.FEMALE
+                Gender.FEMALE,
+                new ArrayList<>()
         );
         underTest.customerSignIn(customer.getEmail());
 

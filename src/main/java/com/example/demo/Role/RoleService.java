@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -41,11 +43,15 @@ public class RoleService {
     }
 
     @Transactional
-    public void addRoleToCustomer(Long id, String roleName) {
-        Role role = roleRepository.findByName(roleName);
+    public void addRoleToCustomer(Long id, String name) {
+        System.out.println(name);
+        Role role = roleRepository.findByName(name);
+        Customer customer = customerRepository.findById(id).get();
+        customer.getRoles().add(role);
+    }
 
-        List<Role> customerRoles = customerRepository.findCustomerRoles(id);
-        customerRoles.add(role);
-        customerRepository.updateCustomerRoles(id, customerRoles);
+    public Collection<Role> getCustomerRoles(Long id) {
+        Collection<Role> roles = customerRepository.findCustomerRoles(id);
+        return roles;
     }
 }
