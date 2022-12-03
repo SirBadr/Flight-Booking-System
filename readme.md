@@ -132,6 +132,12 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 1. install postgres app
 2. start postgres server
 3. create `flightbooking` database
+   ```
+   $ psql
+   $ CREATE DATABASE flightbooking;
+   $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO *;
+   $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
+   ```
    1. CREATE DATABASE flightbooking;
    2. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO mahmoudsamir;
    3. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
@@ -527,7 +533,6 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 1. Complete features ( Complete )
 2. update readme.md ( Complete )
 3. Refactor APIs - Exception Handling - ( Complete )
-4. Add JUnit testing ( In Progress )
-5. Add List of seats to flight 
-6. Add bash file to startup code
-7. Add JWT to APIs
+4. Add JUnit testing ( Complete )
+5. Add JWT to APIs ( In Progress )
+6. Add List of seats to flight 
