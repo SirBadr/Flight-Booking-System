@@ -1,6 +1,10 @@
 package com.example.demo.Admin;
 
+import com.example.demo.Role.Role;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table //to create a table in database
@@ -22,6 +26,8 @@ public class Admin {
     @Column(unique = true)
     private String email;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
     public Admin() {
     }
 

@@ -1,9 +1,12 @@
 package com.example.demo.customer;
 
+import com.example.demo.Role.Role;
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+
 @Entity
 @Table //to create a table in database
 public class Customer {
@@ -24,6 +27,8 @@ public class Customer {
     private LocalDate birthDate;
     private Gender gender;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
     public Customer() {
     }
 
