@@ -62,7 +62,7 @@ public class FlightService {
     }
     @Transactional
     public boolean adminUpdateFlightFare(Integer fare, Long id) {
-        flightRepository.updateFlightFare(999, id);
+        flightRepository.updateFlightFare(fare, id);
         return true;
     }
     @Transactional
