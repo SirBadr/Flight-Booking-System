@@ -34,17 +34,14 @@ public class RoleService {
     }
 
     @Transactional
-    public void addRoleToAdmin(Long id, String roleName) {
-        Role role = roleRepository.findByName(roleName);
-
-        List<Role> adminRoles = adminRepository.findAdminRoles(id);
-        adminRoles.add(role);
-        adminRepository.updateAdminRoles(id, adminRoles);
+    public void addRoleToAdmin(Long id, String name) {
+        Role role = roleRepository.findByName(name);
+        Admin admin = adminRepository.findById(id).get();
+        admin.getRoles().add(role);
     }
 
     @Transactional
     public void addRoleToCustomer(Long id, String name) {
-        System.out.println(name);
         Role role = roleRepository.findByName(name);
         Customer customer = customerRepository.findById(id).get();
         customer.getRoles().add(role);
@@ -52,6 +49,11 @@ public class RoleService {
 
     public Collection<Role> getCustomerRoles(Long id) {
         Collection<Role> roles = customerRepository.findCustomerRoles(id);
+        return roles;
+    }
+
+    public Collection<Role> getAdminRoles(Long id) {
+        Collection<Role> roles = adminRepository.findAdminRoles(id);
         return roles;
     }
 }
