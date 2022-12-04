@@ -86,10 +86,16 @@ public class AdminController {
     }
 
     // Flight Update APIs
-    @RequestMapping(value = "/updateFlightNumber/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateFlightNumber/{id}/{token}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Flight> adminUpdateFlightNumber (@RequestBody Flight flight, @PathVariable Long id) {
+    public ResponseEntity<Flight> adminUpdateFlightNumber (@RequestBody Flight flight, @PathVariable Long id, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
             flightService.adminUpdateFlightNumber(flight.getFlightNumber(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -97,10 +103,16 @@ public class AdminController {
         }
     }
 
-    @RequestMapping(value = "/updateFlightFare/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateFlightFare/{id}/{token}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Flight> adminUpdateFlightFare (@RequestBody Flight flight, @PathVariable Long id) {
+    public ResponseEntity<Flight> adminUpdateFlightFare (@RequestBody Flight flight, @PathVariable Long id, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
             flightService.adminUpdateFlightFare(flight.getFare(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -108,10 +120,17 @@ public class AdminController {
         }
     }
 
-    @RequestMapping(value = "/updateFlightOrigin/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateFlightOrigin/{id}/{token}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Flight> adminUpdateFlightOrigin (@RequestBody Flight flight, @PathVariable Long id) {
+    public ResponseEntity<Flight> adminUpdateFlightOrigin (@RequestBody Flight flight, @PathVariable Long id, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
+
             flightService.adminUpdateFlightOrigin(flight.getOrigin(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e) {
@@ -119,10 +138,17 @@ public class AdminController {
         }
     }
 
-    @RequestMapping(value = "/updateFlightDest/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateFlightDest/{id}/{token}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Flight> adminUpdateFlightDest (@RequestBody Flight flight, @PathVariable Long id) {
+    public ResponseEntity<Flight> adminUpdateFlightDest (@RequestBody Flight flight, @PathVariable Long id, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
+
             flightService.adminUpdateFlightDest(flight.getDest(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -130,10 +156,17 @@ public class AdminController {
         }
     }
 
-    @RequestMapping(value = "/updateFlightDepartureDate/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateFlightDepartureDate/{id}/{token}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Flight> adminUpdateFlightDepartureDate (@RequestBody Flight flight, @PathVariable Long id) {
+    public ResponseEntity<Flight> adminUpdateFlightDepartureDate (@RequestBody Flight flight, @PathVariable Long id, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
+
             flightService.adminUpdateFlightDepartureDate(flight.getDepartureDate(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -141,10 +174,16 @@ public class AdminController {
         }
     }
 
-    @RequestMapping(value = "/updateFlightArrivalDate/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/updateFlightArrivalDate/{id}/{token}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Flight> adminUpdateFlightArrivalDate (@RequestBody Flight flight, @PathVariable Long id) {
+    public ResponseEntity<Flight> adminUpdateFlightArrivalDate (@RequestBody Flight flight, @PathVariable Long id, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
             flightService.adminUpdateFlightArrivalDate(flight.getArrivalDate(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -153,10 +192,16 @@ public class AdminController {
     }
 
     //adminRemoveFlight
-    @RequestMapping(value = "/removeFlight/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/removeFlight/{id}/{token}", method = RequestMethod.DELETE)
     @ResponseBody
-    public ResponseEntity<Flight> adminRemoveFlight (@PathVariable Long id) {
+    public ResponseEntity<Flight> adminRemoveFlight (@PathVariable Long id, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
             flightService.adminRemoveFlight(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
