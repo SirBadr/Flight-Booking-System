@@ -151,6 +151,9 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    ```
 
 # APIs
+You'll find the postman API documentation in this link
+[I'm an inline-style link](https://documenter.getpostman.com/view/17722703/2s8YzMXk2X)
+
 ## Roles (APIs to create roles / add roles to system actors (i.e. admin, customer))
 1. saveRole
    - Description: Creates a new role
