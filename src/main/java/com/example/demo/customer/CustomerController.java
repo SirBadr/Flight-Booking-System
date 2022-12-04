@@ -2,6 +2,7 @@ package com.example.demo.customer;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.example.demo.APIResponses.APIResponses;
 import com.example.demo.Booking.Booking;
 import com.example.demo.Role.Role;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
@@ -26,29 +27,29 @@ public class CustomerController {
         this.customerService = customerService;
     }
     @PostMapping("/signUp")
-    public ResponseEntity<Customer> customerSignUp(
+    public ResponseEntity<?> customerSignUp(
         @RequestBody Customer newCustomer
     ) {
         try{
             if(customerService.customerExists(newCustomer.getEmail())) {
-                System.out.println("HELLo");
-                return new ResponseEntity<Customer>(HttpStatus.BAD_REQUEST);
+//                System.out.println("HELLo");
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Customer already exists") ,HttpStatus.BAD_REQUEST);
             }
             customerService.customerSignUp(newCustomer);
-            return new ResponseEntity<Customer>(newCustomer, HttpStatus.OK);
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "Customer Created successfully"), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Customer>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<APIResponses>(new APIResponses(false, e.getMessage()) ,HttpStatus.BAD_REQUEST);
         }
     }
 
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Resp> customerSignIn(@RequestBody Customer cus) {
+    public ResponseEntity<?> customerSignIn(@RequestBody Customer cus) {
 //        System.out.println(email);
         var customer = customerService.customerSignIn(cus.getEmail());
         System.out.println(customer);
         if(customer == null) {
-            return new ResponseEntity<Resp>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<APIResponses>(new APIResponses(false, "Customer does not exist") ,HttpStatus.NOT_FOUND);
         }else{
             Algorithm algorithm = Algorithm.HMAC256("brightSkies".getBytes());
             String accessToken = JWT.create()
