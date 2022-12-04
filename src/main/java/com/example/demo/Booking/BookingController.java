@@ -1,5 +1,6 @@
 package com.example.demo.Booking;
 
+import com.example.demo.APIResponses.APIResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,38 +21,38 @@ public class BookingController {
 
     // book a flight API
     @PostMapping("/bookFlight")
-    public ResponseEntity<Booking> bookFlight(
+    public ResponseEntity<?> bookFlight(
             @RequestBody Booking booking
     ) {
         try{
             bookingService.bookFlight(booking);
-            return new ResponseEntity<Booking>(booking, HttpStatus.OK);
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "Booked successfully"), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Booking>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<APIResponses>(new APIResponses(false, e.getMessage()) ,HttpStatus.BAD_REQUEST);
         }
     }
 
     // upgradeSeat
     @RequestMapping(value = "/upgradeSeat/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Optional<Booking>> upgradeSeat(@PathVariable Long id) {
+    public ResponseEntity<?> upgradeSeat(@PathVariable Long id) {
         try{
             Optional<Booking> upgraded =  bookingService.upgradeSeat(id);
-            return new ResponseEntity<Optional<Booking>>(upgraded, HttpStatus.OK);
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "Booking updated successfully"), HttpStatus.OK);
         }catch (Exception e) {
-            return new ResponseEntity<Optional<Booking>>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<APIResponses>(new APIResponses(false, e.getMessage()) ,HttpStatus.BAD_REQUEST);
         }
     }
 
     // downgradeSeat
     @RequestMapping(value = "/downgradeSeat/{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<Optional<Booking>> downgradeSeat(@PathVariable Long id) {
+    public ResponseEntity<?> downgradeSeat(@PathVariable Long id) {
         try{
             Optional<Booking> downgraded = bookingService.downgradeSeat(id);
-            return new ResponseEntity<Optional<Booking>>(downgraded, HttpStatus.OK);
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "Booking downgraded successfully"), HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Optional<Booking>>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<APIResponses>(new APIResponses(false, e.getMessage()) ,HttpStatus.BAD_REQUEST);
         }
     }
 
