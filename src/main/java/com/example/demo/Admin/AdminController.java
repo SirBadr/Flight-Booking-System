@@ -1,11 +1,22 @@
 package com.example.demo.Admin;
-
+import com.auth0.jwt.impl.JWTParser;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.example.demo.Flight.Flight;
 import com.example.demo.Flight.FlightService;
+import com.example.demo.Role.Role;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import jakarta.websocket.server.PathParam;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "api/v1/Admins")
@@ -31,24 +42,41 @@ public class AdminController {
         }
     }
 
+    class Resp {
+        public String accessToken;
+        public Resp(String accessToken) {
+            this.accessToken = accessToken;
+        }
+    }
+
     @RequestMapping(value = "/signIn", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Admin> adminSignIn(@RequestBody Admin adm) {
+    public ResponseEntity<Resp> adminSignIn(@RequestBody Admin adm) {
 //        System.out.println(email);
         var admin = adminService.adminSignIn(adm.getEmail());
         System.out.println(admin);
         if(admin == null) {
-            return new ResponseEntity<Admin>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<Resp>(HttpStatus.NOT_FOUND);
         }else{
-            return new ResponseEntity<Admin>(admin, HttpStatus.OK);
+            Algorithm algorithm = Algorithm.HMAC256("brightSkies".getBytes());
+            String accessToken = JWT.create()
+                    .withSubject(admin.getEmail())
+                    .withClaim("roles", admin.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
+                    .sign(algorithm);
+            return new ResponseEntity<Resp>(new Resp(accessToken), HttpStatus.OK);
         }
     }
 
-    @RequestMapping(value = "/addFlight", method = RequestMethod.POST)
+    @RequestMapping(value = "/addFlight/{token}", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Flight> adminAddFlight (@RequestBody Flight flight) {
-//        System.out.println(flight);
+    public ResponseEntity<Flight> adminAddFlight (@RequestBody Flight flight, @PathVariable String token) {
         try{
+            String[] chunks = token.split("\\.");
+            Base64.Decoder decoder = Base64.getUrlDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            if(!payload.contains("ADMIN_ROLE")) {
+                return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
             var res = flightService.adminAddFlight(flight);
 //            System.out.println(res);
             return new ResponseEntity<Flight>(res, HttpStatus.OK);
