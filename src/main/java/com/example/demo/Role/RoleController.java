@@ -42,6 +42,9 @@ public class RoleController {
     @PostMapping("/addRoleToCustomer/{id}")
     public ResponseEntity<?> addRoleToCustomer(@RequestBody Role role, @PathVariable Long id) {
         try{
+            if(roleService.getRoleByName(role.getName()) == null) {
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "ROLE DOES NOT EXIST"), HttpStatus.OK);
+            }
             roleService.addRoleToCustomer(id, role.getName());
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Role added to customer") ,HttpStatus.OK);
         } catch (Exception e) {
@@ -52,6 +55,9 @@ public class RoleController {
     @PostMapping("/addRoleToAdmin/{id}")
     public ResponseEntity<?> addRoleToAdmin(@RequestBody Role role, @PathVariable Long id) {
         try{
+            if(roleService.getRoleByName(role.getName()) == null) {
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "ROLE DOES NOT EXIST"), HttpStatus.OK);
+            }
             roleService.addRoleToAdmin(id, role.getName());
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Role added to admin") ,HttpStatus.OK);
         } catch (Exception e) {
@@ -62,6 +68,7 @@ public class RoleController {
     @GetMapping("/customerRoles/{id}")
     public ResponseEntity<?> getCustomerRoles (@PathVariable Long id) {
         Collection<Role> roles = roleService.getCustomerRoles(id);
+        System.out.println(roles);
         if(roles.size() == 0) {
             return new ResponseEntity<APIResponses>(new APIResponses(true, "No Roles") ,HttpStatus.OK);
         }

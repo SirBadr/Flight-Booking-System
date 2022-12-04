@@ -56,4 +56,8 @@ public class RoleService {
         Collection<Role> roles = adminRepository.findAdminRoles(id);
         return roles;
     }
+
+    public Role getRoleByName(String name) {
+        return roleRepository.findByName(name);
+    }
 }
