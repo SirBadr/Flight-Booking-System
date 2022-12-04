@@ -1,5 +1,6 @@
 package com.example.demo.Role;
 
+import com.example.demo.APIResponses.APIResponses;
 import com.example.demo.Admin.AdminService;
 import com.example.demo.Flight.FlightService;
 import com.example.demo.customer.CustomerService;
@@ -29,25 +30,44 @@ public class RoleController {
     }
 
     @PostMapping("/saveRole")
-    public ResponseEntity<Role> saveRole(@RequestBody Role role) {
-        return ResponseEntity.ok().body(roleService.saveRole(role));
+    public ResponseEntity<?> saveRole(@RequestBody Role role) {
+        try{
+            roleService.saveRole(role);
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "Role Created"), HttpStatus.OK);
+//            return ResponseEntity.ok().body(roleService.saveRole(role));
+        }catch(Exception e) {
+            return new ResponseEntity<APIResponses>(new APIResponses(false, e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/addRoleToCustomer/{id}")
-    public ResponseEntity addRoleToCustomer(@RequestBody Role role, @PathVariable Long id) {
-        roleService.addRoleToCustomer(id, role.getName());
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> addRoleToCustomer(@RequestBody Role role, @PathVariable Long id) {
+        try{
+            roleService.addRoleToCustomer(id, role.getName());
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "Role added to customer") ,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<APIResponses>(new APIResponses(false, e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/addRoleToAdmin/{id}")
-    public ResponseEntity addRoleToAdmin(@RequestBody Role role, @PathVariable Long id) {
-        roleService.addRoleToAdmin(id, role.getName());
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> addRoleToAdmin(@RequestBody Role role, @PathVariable Long id) {
+        try{
+            roleService.addRoleToAdmin(id, role.getName());
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "Role added to admin") ,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<APIResponses>(new APIResponses(false, e.getMessage()) ,HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/customerRoles/{id}")
-    public Collection<Role> getCustomerRoles (@PathVariable Long id) {
-        return roleService.getCustomerRoles(id);
+    public ResponseEntity<?> getCustomerRoles (@PathVariable Long id) {
+        Collection<Role> roles = roleService.getCustomerRoles(id);
+        if(roles.size() == 0) {
+            return new ResponseEntity<APIResponses>(new APIResponses(true, "No Roles") ,HttpStatus.OK);
+        }
+        return new ResponseEntity<Collection<Role>>(roles ,HttpStatus.OK);
+//        return roleService.getCustomerRoles(id);
     }
 
 }
