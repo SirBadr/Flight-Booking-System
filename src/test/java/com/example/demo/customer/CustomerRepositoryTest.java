@@ -2,12 +2,14 @@ package com.example.demo.customer;
 
 import com.example.demo.Role.Role;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -59,25 +61,5 @@ class CustomerRepositoryTest {
 
         // then
         assertThat(_customer).isNull();
-    }
-
-    @Test
-    void itShouldFindCustomerRoles() {
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new Role("CUSTOMER_ROLE"));
-        Customer customer = new Customer(
-                "customerA",
-                "customer@gmail.com",
-                LocalDate.now(),
-                Gender.MALE,
-                roles
-        );
-        underTest.save(customer);
-
-        //where
-        ArrayList<Role> _roles = underTest.findCustomerRoles(1L);
-
-        // then
-        assertThat(_roles.size()).isEqualTo(1);
     }
 }

@@ -18,6 +18,24 @@ It allows user to make a reservation of flight and upgrading the ticket class.
 1. cover code with JUnit test cases
 2. Authentication and Authorization using Oauth 2.0 or JWT.
 
+# How To Run Project
+1. create database with name "flightbooking" and give all privileges to your user and postgres you can use commands below 
+   ```
+   $ psql
+   $ CREATE DATABASE flightbooking;
+   $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO {your_user};
+   $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
+   ```
+   
+2. Run the spring boot code
+   - if you are using `mvn` CLI: simply navigate to project root and use the following command
+      ```mvn spring-boot:run```
+   - if you are using Intellij just navigate to "src/main/java/com.example.demo/DemoApplication" and just click the green arrow next to the demo application class
+
+# How to Run Project JUnit test
+1. if you're using `mvn` CLI: just type ```mvn test``` to run all test cases
+2. or just use Intellij to run specific test cases in "src/test/java/com.example.demo" and you can see there different test cases
+
 # Project scope
 This project is a flight booking system will allow admin to add/update/read/remove flights and specifying their details like fare, destination, origin, departure and arrival times.
 And will allow customers to search through all flights, by fare, from and to destinations, book a certain flight ticket, upgrade to a higher class, cancel his booking.
@@ -131,9 +149,6 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO *;
    $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
    ```
-   1. CREATE DATABASE flightbooking;
-   2. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO mahmoudsamir;
-   3. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
 
 # APIs
 ## Roles (APIs to create roles / add roles to system actors (i.e. admin, customer))
