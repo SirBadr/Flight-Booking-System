@@ -1,6 +1,12 @@
 package com.example.demo.Admin;
 
+import com.example.demo.Role.Role;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table //to create a table in database
@@ -22,12 +28,22 @@ public class Admin {
     @Column(unique = true)
     private String email;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
     public Admin() {
     }
 
     public Admin(String name, String email) {
         this.name = name;
         this.email = email;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     public String getName() {
