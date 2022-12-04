@@ -4,7 +4,9 @@ import com.example.demo.Role.Role;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table //to create a table in database

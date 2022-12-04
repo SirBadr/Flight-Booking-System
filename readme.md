@@ -143,6 +143,67 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    3. GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
 
 # APIs
+## Roles (APIs to create roles / add roles to system actors (i.e. admin, customer))
+1. saveRole
+   - Description: Creates a new role
+   - EndPoint: "http://localhost:8080/api/v1/Roles/saveRole"
+   - Request Type: POST
+   - Body parameters: Role role
+   - Path parameters: N/A
+   - Returns: Role
+   - Example: 
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Roles/saveRole' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "name":"ADMIN_ROLE"
+   }'
+   ```
+
+2. addRoleToCustomer
+   - Description: adds a new role to customer
+   - EndPoint: "http://localhost:8080/api/v1/Roles/addRoleToCustomer/{id}"
+   - Request Type: POST
+   - Body parameters: Role role
+   - Path parameters: id (customer id)
+   - Returns: N/A
+   - Example: 
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Roles/addRoleToCustomer/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "name":"ROLE_CUSTOMER"
+   }'
+   ```
+
+3. addRoleToAdmin
+   - Description: adds a new role to admin
+   - EndPoint: "http://localhost:8080/api/v1/Roles/addRoleToAdmin"
+   - Request Type: POST
+   - Body parameters: Role role
+   - Path parameters: id (admin id)
+   - Returns: N/A
+   - Example:
+   ```
+   curl --location --request POST 'http://localhost:8080/api/v1/Roles/addRoleToAdmin/1' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "name":"ADMIN_ROLE"
+   }'
+   ```
+
+4. getCustomerRoles
+   - Description: read all roles of a certain customer
+   - EndPoint: "http://localhost:8080/api/v1/Roles/customerRoles/{id}"
+   - Request Type: GET
+   - Body parameters: N/A
+   - Path parameters: id (customer id)
+   - Returns: Collection<Role>
+   - Example:
+   ```
+   curl --location --request GET 'http://localhost:8080/api/v1/Roles/customerRoles/1'
+   ```
+
 ## Customer APIs
 1. Sign Up
    - Example:
@@ -233,17 +294,17 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 
 ### Admin APIs for Flights
 ## Adding a Flight
-1. adminAddFlight
+1. adminAddFlight (Requires: ADMIN_ROLE)
    - Description: adds a new flight to DB
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/addFlight"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/addFlight/{token}"
    - Request Type: POST
    - Body parameters: Flight
-   - Path parameters: N/A
+   - Path parameters: String token
    - Returns: N/A
    - Example:
    ```
-   curl --location --request POST 'http://localhost:8080/api/v1/Admins/addFlight' \
+   curl --location --request POST 'http://localhost:8080/api/v1/Admins/addFlight/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo' \
    --header 'Content-Type: application/json' \
    --data-raw '{
    "flightNumber":"12A",
@@ -259,102 +320,102 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    ```
 
 ## Updating a Flight
-1. adminUpdateFlightNumber
+1. adminUpdateFlightNumber (Requires: ADMIN_ROLE)
    - Description: Updates a certain flight number
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightNumber/{id}"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightNumber/{id}/{token}"
    - Request Type: PUT
    - Body parameters: String flightNumber
-   - Path parameters: Long id
+   - Path parameters: Long id, String token
    - Returns: N/A
    - Example:
    ```
-   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightNumber/1' \
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightNumber/1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo' \
    --header 'Content-Type: application/json' \
    --data-raw '{
    "flightNumber":"12B"
    }'
    ```
 
-2. adminUpdateFlightFare
+2. adminUpdateFlightFare (Requires: ADMIN_ROLE)
    - Description: Updates a certain flight fare
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightFare/{id}"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightFare/{id}/{token}"
    - Request Type: PUT
    - Body parameters: Integer fare
-   - Path parameters: Long id
+   - Path parameters: Long id, String token
    - Returns: N/A
    - Example: 
    ```
-   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightFare/1' \
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightFare/1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo' \
    --header 'Content-Type: application/json' \
    --data-raw '{
-   "fare":99
+   "fare":991
    }'
    ```
 
-3. adminUpdateFlightOrigin
+3. adminUpdateFlightOrigin (Requires: ADMIN_ROLE)
    - Description: Updates a certain flight origin place
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightOrigin/{id}"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightOrigin/{id}/{token}"
    - Request Type: PUT
    - Body parameters: String origin
-   - Path parameters: Long id
+   - Path parameters: Long id, String token
    - Returns: N/A
    - Example: 
    ```
-   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightOrigin/1' \
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightOrigin/1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo' \
    --header 'Content-Type: application/json' \
    --data-raw '{
    "origin":"TAI"
    }'
    ```
 
-4. adminUpdateFlightDest
+4. adminUpdateFlightDest (Requires: ADMIN_ROLE)
    - Description: Updates a certain flight destination place
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightDest/{id}"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightDest/{id}/{token}"
    - Request Type: PUT
    - Body parameters: String dest
-   - Path parameters: Long id
+   - Path parameters: Long id, String token
    - Returns: N/A
    - Example: 
    ```
-   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightDest/1' \
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightDest/1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo' \
    --header 'Content-Type: application/json' \
    --data-raw '{
    "dest":"USA"
    }'
    ```
 
-5. adminUpdateFlightDepartureDate
+5. adminUpdateFlightDepartureDate (Requires: ADMIN_ROLE)
    - Description: Updates a certain flight departure date
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/adminUpdateFlightDepartureDate/{id}"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/adminUpdateFlightDepartureDate/{id}/{token}"
    - Request Type: PUT
    - Body parameters: LocalDate departureDate
-   - Path parameters: Long id
+   - Path parameters: Long id, String token
    - Returns: N/A
    - Example:
    ```
-   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightDepartureDate/1' \
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightDepartureDate/1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo' \
    --header 'Content-Type: application/json' \
    --data-raw '{
    "departureDate":12435
    }'
    ```
 
-6. adminUpdateFlightArrivalDate
+6. adminUpdateFlightArrivalDate (Requires: ADMIN_ROLE)
    - Description: Updates a certain flight arrival date
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightArrivalDate/{id}"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/updateFlightArrivalDate/{id}/{token}"
    - Request Type: PUT
    - Body parameters: LocalDate arrivalDate
-   - Path parameters: Long id
+   - Path parameters: Long id, String token
    - Returns: N/A
    - Example:
    ```
-   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightArrivalDate/1' \
+   curl --location --request PUT 'http://localhost:8080/api/v1/Admins/updateFlightArrivalDate/1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo' \
    --header 'Content-Type: application/json' \
    --data-raw '{
    "arrivalDate":29321
@@ -362,17 +423,17 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
    ```
 
 ## Removing a Flight
-1. adminRemoveFlight
+1. adminRemoveFlight (Requires: ADMIN_ROLE)
    - Description: delete a certain flight from DB
    - Permission: public (customer or admin)
-   - EndPoint: "http://localhost:8080/api/v1/Admins/removeFlight/{id}"
+   - EndPoint: "http://localhost:8080/api/v1/Admins/removeFlight/{id}/{token}"
    - Request Type: DELETE
    - Body parameters: N/A
-   - Path parameters: Long id
+   - Path parameters: Long id, String token
    - Returns: N/A
    - Example:
    ```
-   curl --location --request DELETE 'http://localhost:8080/api/v1/Admins/removeFlight/1'
+   curl --location --request DELETE 'http://localhost:8080/api/v1/Admins/removeFlight/1/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlcyI6WyJBRE1JTl9ST0xFIl19.KNtxJ5HaUwo76Ptq77naxHvCaemPDPFOlFkwsgvZAPo'
    ```
 
 ## Flight APIs (Reading)
@@ -534,5 +595,5 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 2. update readme.md ( Complete )
 3. Refactor APIs - Exception Handling - ( Complete )
 4. Add JUnit testing ( Complete )
-5. Add JWT to APIs ( In Progress )
-6. Add List of seats to flight 
+5. Add JWT to APIs ( Complete )
+6. add API validation ( In Progress )
