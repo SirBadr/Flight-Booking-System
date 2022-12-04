@@ -143,16 +143,19 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 1. install postgres app
 2. start postgres server
 3. create `flightbooking` database
-   ```
+  ```
    $ psql
    $ CREATE DATABASE flightbooking;
-   $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO *;
+   $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO {your_user};
    $ GRANT ALL PRIVILEGES ON DATABASE "flightbooking" TO postgres;
-   ```
+   ``` 
 
 # APIs
-You'll find the postman API documentation in this link
-[I'm an inline-style link](https://documenter.getpostman.com/view/17722703/2s8YzMXk2X)
+- You'll find the postman API documentation in this link
+  [I'm an inline-style link](https://documenter.getpostman.com/view/17722703/2s8YzMXk2X)
+
+- Note: to use (ADMIN_ROLE ONLY)  APIs, please use the JWT access token you receive after you sign in with your admin email
+
 
 ## Roles (APIs to create roles / add roles to system actors (i.e. admin, customer))
 1. saveRole
@@ -294,6 +297,7 @@ You'll find the postman API documentation in this link
    }'
    ```
 2. Sign In
+   - returns JWT access token to use in (ADMIN only) APIs.
    -Example:
    ```
    curl --location --request POST 'http://localhost:8080/api/v1/Admins/signIn' \
@@ -305,7 +309,7 @@ You'll find the postman API documentation in this link
 
 ### Admin APIs for Flights
 ## Adding a Flight
-1. adminAddFlight (Requires: ADMIN_ROLE)
+1. adminAddFlight (Requires: ADMIN_ROLE, please use the access token from Admin signIn response body)
    - Description: adds a new flight to DB
    - Permission: public (customer or admin)
    - EndPoint: "http://localhost:8080/api/v1/Admins/addFlight/{token}"
