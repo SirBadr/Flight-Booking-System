@@ -90,4 +90,11 @@ public class FlightService {
         flightRepository.deleteById(id);
         return true;
     }
+
+    public boolean flightExists(Long id) {
+        if(flightRepository.findById(id).get() == null) {
+            return false;
+        }
+        return true;
+    }
 }

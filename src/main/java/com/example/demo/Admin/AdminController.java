@@ -94,6 +94,9 @@ public class AdminController {
             if(!payload.contains("ADMIN_ROLE")) {
                 return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
             }
+            if(!flightService.flightExists(id)) {
+                return new ResponseEntity<Flight>(HttpStatus.NOT_FOUND);
+            }
             flightService.adminUpdateFlightNumber(flight.getFlightNumber(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -110,6 +113,9 @@ public class AdminController {
             String payload = new String(decoder.decode(chunks[1]));
             if(!payload.contains("ADMIN_ROLE")) {
                 return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
+            if(!flightService.flightExists(id)) {
+                return new ResponseEntity<Flight>(HttpStatus.NOT_FOUND);
             }
             flightService.adminUpdateFlightFare(flight.getFare(), id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -128,7 +134,9 @@ public class AdminController {
             if(!payload.contains("ADMIN_ROLE")) {
                 return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
             }
-
+            if(!flightService.flightExists(id)) {
+                return new ResponseEntity<Flight>(HttpStatus.NOT_FOUND);
+            }
             flightService.adminUpdateFlightOrigin(flight.getOrigin(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e) {
@@ -146,7 +154,9 @@ public class AdminController {
             if(!payload.contains("ADMIN_ROLE")) {
                 return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
             }
-
+            if(!flightService.flightExists(id)) {
+                return new ResponseEntity<Flight>(HttpStatus.NOT_FOUND);
+            }
             flightService.adminUpdateFlightDest(flight.getDest(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -164,7 +174,9 @@ public class AdminController {
             if(!payload.contains("ADMIN_ROLE")) {
                 return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
             }
-
+            if(!flightService.flightExists(id)) {
+                return new ResponseEntity<Flight>(HttpStatus.NOT_FOUND);
+            }
             flightService.adminUpdateFlightDepartureDate(flight.getDepartureDate(), id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
@@ -181,6 +193,9 @@ public class AdminController {
             String payload = new String(decoder.decode(chunks[1]));
             if(!payload.contains("ADMIN_ROLE")) {
                 return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
+            if(!flightService.flightExists(id)) {
+                return new ResponseEntity<Flight>(HttpStatus.NOT_FOUND);
             }
             flightService.adminUpdateFlightArrivalDate(flight.getArrivalDate(), id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -199,6 +214,9 @@ public class AdminController {
             String payload = new String(decoder.decode(chunks[1]));
             if(!payload.contains("ADMIN_ROLE")) {
                 return new ResponseEntity<Flight>(HttpStatus.UNAUTHORIZED);
+            }
+            if(!flightService.flightExists(id)) {
+                return new ResponseEntity<Flight>(HttpStatus.NOT_FOUND);
             }
             flightService.adminRemoveFlight(id);
             return new ResponseEntity<>(HttpStatus.OK);
