@@ -30,7 +30,10 @@ public class CustomerController {
         @RequestBody Customer newCustomer
     ) {
         try{
-            System.out.println(newCustomer);
+            if(customerService.customerExists(newCustomer.getEmail())) {
+                System.out.println("HELLo");
+                return new ResponseEntity<Customer>(HttpStatus.BAD_REQUEST);
+            }
             customerService.customerSignUp(newCustomer);
             return new ResponseEntity<Customer>(newCustomer, HttpStatus.OK);
         } catch (Exception e) {

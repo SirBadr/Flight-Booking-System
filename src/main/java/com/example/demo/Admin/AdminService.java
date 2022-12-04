@@ -31,5 +31,12 @@ public class AdminService {
         return result;
     }
 
+    public boolean adminExists(String email) {
+        var admin = adminRepository.findByEmail(email);
+        if(admin == null) {
+            return false;
+        }
+        return true;
+    }
 
 }

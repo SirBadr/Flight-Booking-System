@@ -41,4 +41,12 @@ public class CustomerService {
         return result;
     }
 
+    public boolean customerExists(String email) {
+        System.out.println(customerRepository.findByEmail(email));
+        if(customerRepository.findByEmail(email) == null) {
+            return false;
+        }
+        return true;
+    }
+
 }

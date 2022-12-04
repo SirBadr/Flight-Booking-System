@@ -1,20 +1,15 @@
 package com.example.demo.Admin;
-import com.auth0.jwt.impl.JWTParser;
+
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.demo.Flight.Flight;
 import com.example.demo.Flight.FlightService;
 import com.example.demo.Role.Role;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import jakarta.websocket.server.PathParam;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.stream.Collectors;
 
@@ -34,6 +29,9 @@ public class AdminController {
             @RequestBody Admin newAdmin
     ) {
         try{
+            if(adminService.adminExists(newAdmin.getEmail())){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             adminService.adminSignUp(newAdmin);
             return new ResponseEntity<Admin>(newAdmin, HttpStatus.OK);
         }

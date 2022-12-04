@@ -26,7 +26,7 @@ Customer's payment for a flight is considered out-of-scope of this project, so p
 
 ## Assumptions.
 1. As long as we have `customers` able to book a flight, upgrade or cancel a flight, we need a method to log in.
-2. Handling simple sign up / log in only with email ( without password ).
+2. Handling a trivial sign up / sign in only with email ( without password ).
 
 # System Actors
 1. Admin: responsible for adding/updating/removing any flight.
@@ -50,13 +50,6 @@ class Flight {
     LocalDate arrivalDate
     TimeStamp departureTime
     TimeStamp arrivalTime
-}
-```
-
-```
-class Airline {
-    String Name
-    List<Flight> allFlights
 }
 ```
 
