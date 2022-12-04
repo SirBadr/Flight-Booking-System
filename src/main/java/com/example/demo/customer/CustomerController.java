@@ -25,7 +25,7 @@ public class CustomerController {
     ) {
         try{
             if(customerService.customerExists(newCustomer.getEmail())) {
-//                System.out.println("HELLo");
+                // if customer already exists, sign up fails!
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "Customer already exists") ,HttpStatus.BAD_REQUEST);
             }
             customerService.customerSignUp(newCustomer);
@@ -42,8 +42,10 @@ public class CustomerController {
         var customer = customerService.customerSignIn(cus.getEmail());
         System.out.println(customer);
         if(customer == null) {
+            // there's no customer saved to sign in with !
             return new ResponseEntity<APIResponses>(new APIResponses(false, "Customer does not exist") ,HttpStatus.NOT_FOUND);
         }else{
+            // create JWT token with roles of this user
             Algorithm algorithm = Algorithm.HMAC256("brightSkies".getBytes());
             String accessToken = JWT.create()
                     .withSubject(customer.getEmail())

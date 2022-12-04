@@ -17,13 +17,14 @@ public class AdminService {
     public void adminSignUp(
             Admin newAdmin
     ) {
-        //System.out.println(newCustomer);
+        // save admin
         adminRepository.save(
                 newAdmin
         );
     }
 
     public Admin adminSignIn(String email) {
+        // return record from DB for that unique email
         System.out.println(email);
         var result = adminRepository.findByEmail(email);
         System.out.println("RESULT");
@@ -32,6 +33,7 @@ public class AdminService {
     }
 
     public boolean adminExists(String email) {
+        // checks if an admin exists or not
         var admin = adminRepository.findByEmail(email);
         if(admin == null) {
             return false;
