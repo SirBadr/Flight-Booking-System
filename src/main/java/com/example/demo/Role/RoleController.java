@@ -2,7 +2,6 @@ package com.example.demo.Role;
 
 import com.example.demo.APIResponses.APIResponses;
 import com.example.demo.Admin.AdminService;
-import com.example.demo.Flight.FlightService;
 import com.example.demo.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,16 +1,11 @@
 package com.example.demo.Flight;
 
 import com.example.demo.APIResponses.APIResponses;
-import com.example.demo.Admin.Admin;
-import com.example.demo.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +25,7 @@ public class FlightController {
         try{
             Optional<Flight> flight = flightService.readFlightById(id);
             if(flight.get() == null) {
-                return new ResponseEntity<APIResponses>(new APIResponses(true, "No flight exists with this Id"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(true, "No flight exists with this Id"), HttpStatus.OK);
             }
             return new ResponseEntity<Optional<Flight>>(flight, HttpStatus.OK);
         } catch (Exception e) {
@@ -43,7 +38,7 @@ public class FlightController {
         try{
             List<Flight> allFlights = flightService.getAllFlights();
             if(allFlights.size() == 0) {
-                return new ResponseEntity<APIResponses>(new APIResponses(true, "No flights yet"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(true, "No flights yet"), HttpStatus.OK);
             }
             return new ResponseEntity<List<Flight>>(allFlights, HttpStatus.OK);
         } catch (Exception e) {
@@ -57,7 +52,7 @@ public class FlightController {
         try{
             List<Flight> airLineFlights = flightService.readFlightByAirLine(airLine);
             if(airLineFlights.size() == 0) {
-                return new ResponseEntity<APIResponses>(new APIResponses(true, "No Flights"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(true, "No Flights"), HttpStatus.OK);
             }
             return new ResponseEntity<List<Flight>>(airLineFlights, HttpStatus.OK);
         } catch (Exception e) {
@@ -71,7 +66,7 @@ public class FlightController {
         try{
             List<Flight> originFlights = flightService.readFlightByOrigin(origin);
             if(originFlights.size() == 0) {
-                return new ResponseEntity<APIResponses>(new APIResponses(true, "No Flights"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(true, "No Flights"), HttpStatus.OK);
             }
             return new ResponseEntity<List<Flight>>(originFlights, HttpStatus.OK);
         } catch (Exception e) {
@@ -85,7 +80,7 @@ public class FlightController {
         try{
             List<Flight> destinationFlights = flightService.readFlightByDestination(dest);
             if(destinationFlights.size() == 0) {
-                return new ResponseEntity<APIResponses>(new APIResponses(true, "No Flights"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(true, "No Flights"), HttpStatus.OK);
             }
             return new ResponseEntity<List<Flight>>(destinationFlights, HttpStatus.OK);
         } catch (Exception e) {

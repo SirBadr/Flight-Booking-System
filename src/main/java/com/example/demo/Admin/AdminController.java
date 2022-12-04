@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,7 +31,7 @@ public class AdminController {
     ) {
         try{
             if(adminService.adminExists(newAdmin.getEmail())){
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Admin Already Exists"), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Admin Already Exists"), HttpStatus.OK);
             }
             adminService.adminSignUp(newAdmin);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Admin Created Successfully"), HttpStatus.OK);
@@ -56,7 +55,7 @@ public class AdminController {
         var admin = adminService.adminSignIn(adm.getEmail());
 //        System.out.println(admin);
         if(admin == null) {
-            return new ResponseEntity<APIResponses>(new APIResponses(false, "Admin does not exist") ,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<APIResponses>(new APIResponses(false, "Admin does not exist") ,HttpStatus.OK);
         }else{
             Algorithm algorithm = Algorithm.HMAC256("brightSkies".getBytes());
             String accessToken = JWT.create()
@@ -97,7 +96,7 @@ public class AdminController {
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "You are not authorized to update flight, please use admin access token if you have") ,HttpStatus.UNAUTHORIZED);
             }
             if(!flightService.flightExists(id)) {
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist!") ,HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist!") ,HttpStatus.OK);
             }
             flightService.adminUpdateFlightNumber(flight.getFlightNumber(), id);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Flight Updated successfully") ,HttpStatus.OK);
@@ -117,7 +116,7 @@ public class AdminController {
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "You are not authorized to update flight, please use admin access token") ,HttpStatus.UNAUTHORIZED);
             }
             if(!flightService.flightExists(id)) {
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.OK);
             }
             flightService.adminUpdateFlightFare(flight.getFare(), id);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Flight updated successfully") ,HttpStatus.OK);
@@ -137,7 +136,7 @@ public class AdminController {
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "You are not authorized to update flight, please use admin access keys") ,HttpStatus.UNAUTHORIZED);
             }
             if(!flightService.flightExists(id)) {
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.OK);
             }
             flightService.adminUpdateFlightOrigin(flight.getOrigin(), id);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Flight updated successfully") ,HttpStatus.OK);
@@ -157,7 +156,7 @@ public class AdminController {
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "You are not authorized to update flight, please use admin access keys") ,HttpStatus.UNAUTHORIZED);
             }
             if(!flightService.flightExists(id)) {
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.OK);
             }
             flightService.adminUpdateFlightDest(flight.getDest(), id);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Flight updated successfully") ,HttpStatus.OK);
@@ -177,7 +176,7 @@ public class AdminController {
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "You are not authorized to update flight, please use admin access keys") ,HttpStatus.UNAUTHORIZED);
             }
             if(!flightService.flightExists(id)) {
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.OK);
             }
             flightService.adminUpdateFlightDepartureDate(flight.getDepartureDate(), id);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Flight updated successfully") ,HttpStatus.OK);
@@ -197,7 +196,7 @@ public class AdminController {
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "You are not authorized to update flight, please use admin access keys if you have") ,HttpStatus.UNAUTHORIZED);
             }
             if(!flightService.flightExists(id)) {
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.OK);
             }
             flightService.adminUpdateFlightArrivalDate(flight.getArrivalDate(), id);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Flight updated successfully") ,HttpStatus.OK);
@@ -218,7 +217,7 @@ public class AdminController {
                 return new ResponseEntity<APIResponses>(new APIResponses(false, "You are not authorized to remove flight, please use admin access keys"), HttpStatus.UNAUTHORIZED);
             }
             if(!flightService.flightExists(id)) {
-                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.NOT_FOUND);
+                return new ResponseEntity<APIResponses>(new APIResponses(false, "Flight does not exist") ,HttpStatus.OK);
             }
             flightService.adminRemoveFlight(id);
             return new ResponseEntity<APIResponses>(new APIResponses(true, "Flight removed successfully"), HttpStatus.OK);

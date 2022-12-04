@@ -3,19 +3,12 @@ package com.example.demo.customer;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.example.demo.APIResponses.APIResponses;
-import com.example.demo.Booking.Booking;
 import com.example.demo.Role.Role;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.Authenticator;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
