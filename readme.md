@@ -152,7 +152,7 @@ I used <a href="https://start.spring.io/" target="_blank">Initializr</a> to gene
 
 # APIs
 - You'll find the postman API documentation in this link
-  [I'm an inline-style link](https://documenter.getpostman.com/view/17722703/2s8YzMXk2X)
+  [POSTMAN API DOCUMENTATION FILE](https://documenter.getpostman.com/view/17722703/2s8YzMXk2X)
 
 - Note: to use (ADMIN_ROLE ONLY)  APIs, please use the JWT access token you receive after you sign in with your admin email
 
